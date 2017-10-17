@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 
 namespace NatiMath
@@ -19,7 +18,7 @@ namespace NatiMath
 
         public override string ToString()
         {
-            return string.Join(" + ", Members as IEnumerable<IExpression>);
+            return string.Join(" + ", Members.Select(x => $"({x})"));
         }
     }
 }

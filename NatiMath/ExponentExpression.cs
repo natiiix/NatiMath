@@ -20,7 +20,7 @@ namespace NatiMath
 
         public override string ToString()
         {
-            return $"{BaseValue}^{Exponent}";
+            return $"({BaseValue})^({Exponent})";
         }
     }
 }
