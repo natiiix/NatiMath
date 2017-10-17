@@ -1,4 +1,4 @@
-namespace NatiMath.Expression
+namespace NatiMath
 {
     public interface IExpression
     {

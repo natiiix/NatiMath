@@ -6,7 +6,7 @@ namespace NatiMath
     /// <summary>
     /// Class for operating with numeric fractions.
     /// </summary>
-    public class Fraction
+    public class Fraction : IExpression
     {
         /// <summary>
         /// Value of the numerator part of the fraction.

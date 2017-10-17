@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NatiMath.Expression
+namespace NatiMath
 {
     public class SumExpression : IExpression
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace NatiMath.Expression
+namespace NatiMath
 {
     public class ProductExpression : IExpression
     {
