@@ -1,6 +1,6 @@
 using System;
 
-namespace NatiMath
+namespace NatiMath.Expression
 {
     public class ExponentExpression : IExpression
     {
