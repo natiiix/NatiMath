@@ -1,21 +1,21 @@
 using System.Linq;
 
-namespace NatiMath
+namespace NatiMath.Expression
 {
-    public class ProductExpression : IExpression
+    public class ProductExpression : Expression
     {
-        public readonly IExpression[] Members;
+        public readonly Expression[] Members;
 
-        public ProductExpression(params IExpression[] members)
+        public ProductExpression(params Expression[] members)
         {
             Members = members;
         }
 
-        public double ToDouble()
+        protected override double __ToDouble()
         {
             double product = 1;
 
-            foreach (IExpression x in Members)
+            foreach (Expression x in Members)
             {
                 product *= x.ToDouble();
             }
@@ -23,7 +23,7 @@ namespace NatiMath
             return product;
         }
 
-        public override string ToString()
+        protected override string __ToString()
         {
             return string.Join(" * ", Members.Select(x => $"({x})"));
         }
