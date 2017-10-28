@@ -417,5 +417,50 @@ namespace NatiMath
                 return new Fraction(BigInteger.Pow(a.Denominator, -exponent), BigInteger.Pow(a.Numerator, -exponent));
             }
         }
+
+        /// <summary>
+        /// Implicit type conversion from BigInteger to Fraction.
+        /// </summary>
+        /// <param name="value">Input value.</param>
+        public static implicit operator Fraction(BigInteger value)
+        {
+            return new Fraction(value);
+        }
+
+        /// <summary>
+        /// Implicit type conversion from int to Fraction.
+        /// </summary>
+        /// <param name="value">Input value.</param>
+        public static implicit operator Fraction(int value)
+        {
+            return new Fraction(value);
+        }
+
+        /// <summary>
+        /// Implicit type conversion from double to Fraction.
+        /// </summary>
+        /// <param name="value">Input value.</param>
+        public static implicit operator Fraction(double value)
+        {
+            return new Fraction(value);
+        }
+
+        /// <summary>
+        /// Implicit type conversion from float to Fraction.
+        /// </summary>
+        /// <param name="value">Input value.</param>
+        public static implicit operator Fraction(float value)
+        {
+            return new Fraction(value);
+        }
+
+        /// <summary>
+        /// Explicit type conversion from Fraction to double.
+        /// </summary>
+        /// <param name="value">Returns a double precision floating point value representing the value of the input fraction.</param>
+        public static explicit operator double(Fraction value)
+        {
+            return value.ToDouble();
+        }
     }
 }
