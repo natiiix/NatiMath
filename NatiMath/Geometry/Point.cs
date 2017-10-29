@@ -120,5 +120,14 @@ namespace NatiMath.Geometry
         /// </summary>
         /// <returns>Returns a vector representation of the point.</returns>
         public static explicit operator Vector(Point value) => value.ToVector();
+
+        /// <summary>
+        /// Calculates the distance between two points.
+        /// Equivalent to reading the magnitude of the difference vector of the input points.
+        /// </summary>
+        /// <param name="a">First input point.</param>
+        /// <param name="b">Second input point.</param>
+        /// <returns>Returns a double precision floating point representation of the distance between the two points.</returns>
+        public static double GetDistance(Point a, Point b) => (a - b).Magnitude;
     }
 }
