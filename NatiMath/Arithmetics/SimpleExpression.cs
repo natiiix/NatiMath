@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Numerics;
 
-namespace NatiMath.Expression
+namespace NatiMath.Arithmetics
 {
     public class SimpleExpression : Expression
     {

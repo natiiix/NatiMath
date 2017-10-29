@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace NatiMath.Expression
+namespace NatiMath.Arithmetics
 {
     public class SumExpression : Expression
     {

@@ -1,4 +1,4 @@
-namespace NatiMath.Expression
+namespace NatiMath.Arithmetics
 {
     public abstract class Expression
     {

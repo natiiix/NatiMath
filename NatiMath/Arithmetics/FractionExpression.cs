@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace NatiMath.Expression
+namespace NatiMath.Arithmetics
 {
     public class FractionExpression : Expression
     {
