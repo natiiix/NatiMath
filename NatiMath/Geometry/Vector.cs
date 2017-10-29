@@ -10,41 +10,46 @@ namespace NatiMath.Geometry
     public class Vector
     {
         /// <summary>
-        /// Values of the vector magnitudes in each dimensions.
+        /// Individual dimensions of the vector.
         /// </summary>
-        public Fraction[] Magnitudes;
+        public Fraction[] Dimensions;
 
         /// <summary>
         /// Number of dimensions the vector has.
         /// </summary>
-        public int NDimensions { get => Magnitudes.Length; }
+        public int NDimensions { get => GetNumberOfDimensions(); }
 
         /// <summary>
-        /// Constructs a Vector object from a set of magnitudes.
+        /// Magnitude of the vector.
         /// </summary>
-        /// <param name="magnitudes">Magnitude values.</param>
-        public Vector(params Fraction[] magnitudes)
+        public double Magnitude { get => GetMagnitude(); }
+
+        /// <summary>
+        /// Constructs a Vector object from a set of dimensions in an array.
+        /// </summary>
+        /// <param name="dimensions">Dimension values.</param>
+        public Vector(params Fraction[] dimensions)
         {
-            Magnitudes = magnitudes;
+            Dimensions = dimensions;
         }
 
         /// <summary>
-        /// Constructs a Vector object from a set of magnitudes.
+        /// Constructs a Vector object from a set of dimensions in an enumerable.
         /// </summary>
-        /// <param name="magnitudes">Magnitude values.</param>
-        public Vector(IEnumerable<Fraction> magnitudes) : this(magnitudes.ToArray())
+        /// <param name="dimensions">Dimension values.</param>
+        public Vector(IEnumerable<Fraction> dimensions) : this(dimensions.ToArray())
         {
         }
 
         /// <summary>
-        /// Provides an easier access to magnitude values.
+        /// Provides an easier access to the individual dimension values.
         /// </summary>
         /// <param name="i">Index of the accessed dimension.</param>
-        /// <returns>Returns the value of a magnitude in the specified dimension.</returns>
+        /// <returns>Returns the value of the specified dimension of the vector.</returns>
         public Fraction this[int i]
         {
-            get { return Magnitudes[i]; }
-            set { Magnitudes[i] = value; }
+            get { return Dimensions[i]; }
+            set { Dimensions[i] = value; }
         }
 
         /// <summary>
@@ -54,8 +59,8 @@ namespace NatiMath.Geometry
         /// <returns>Returns an inverted vector to the input vector.</returns>
         public static Vector operator -(Vector a)
         {
-            // The magnitude of the vector in each dimension is negated
-            return new Vector(a.Magnitudes.Select(x => -x));
+            // Negates the value of each dimension of the vector
+            return new Vector(a.Dimensions.Select(x => -x));
         }
 
         /// <summary>
@@ -72,19 +77,19 @@ namespace NatiMath.Geometry
             // In order to be added, the input vectors must have a matching number of dimensions
             if (b.NDimensions != nDimensions)
             {
-                throw new InvalidOperationException();
+                throw new ArgumentException("Added vectors must have the same number of dimensions!");
             }
 
-            // Add the magnitudes in each dimension
-            Fraction[] addedDirection = new Fraction[nDimensions];
+            // Adds the respective dimensions
+            Fraction[] addedDimensions = new Fraction[nDimensions];
 
             for (int i = 0; i < nDimensions; i++)
             {
-                addedDirection[i] = a[i] + b[i];
+                addedDimensions[i] = a[i] + b[i];
             }
 
             // Return the added vector
-            return new Vector(addedDirection);
+            return new Vector(addedDimensions);
         }
 
         /// <summary>
@@ -101,21 +106,48 @@ namespace NatiMath.Geometry
         /// <summary>
         /// Multiplication operator overload.
         /// Scales the input vector by a specified scale.
-        /// Each magnitude of the vector is multiplied by the scale.
+        /// Each dimension of the vector is multiplied by the scale.
         /// </summary>
         /// <param name="value">Input vector.</param>
         /// <param name="scale">Input scale.</param>
         /// <returns>Returns a vector with the value of the input vector scaled by the input scale.</returns>
-        public static Vector operator *(Vector value, Fraction scale) => new Vector(value.Magnitudes.Select(x => x * scale));
+        public static Vector operator *(Vector value, Fraction scale) => new Vector(value.Dimensions.Select(x => x * scale));
 
         /// <summary>
         /// Division operator overload.
         /// Scales the input vector by a specified scale.
-        /// Each magnitude of the vector is divided by the scale.
+        /// Each dimension of the vector is divided by the scale.
         /// </summary>
         /// <param name="value">Input vector.</param>
         /// <param name="scale">Input scale.</param>
         /// <returns>Returns the value of the input vector scaled by the input scale.</returns>
         public static Vector operator /(Vector value, Fraction scale) => value * ~scale;
+
+        /// <summary>
+        /// Converts the vector to a point.
+        /// Equivalent to adding the vector to the origin of the coordinate system.
+        /// </summary>
+        /// <returns>Returns a point representation of the vector.</returns>
+        public Point ToPoint() => new Point(Dimensions);
+
+        /// <summary>
+        /// Converts the vector to a point.
+        /// Equivalent to adding the vector to the origin of the coordinate system.
+        /// </summary>
+        /// <returns>Returns a point representation of the vector.</returns>
+        public static explicit operator Point(Vector value) => value.ToPoint();
+
+        /// <summary>
+        /// Determines the number of dimensions by reading the length of the array of dimensions.
+        /// </summary>
+        /// <returns>Returns the number of dimensions of the vector.</returns>
+        public int GetNumberOfDimensions() => Dimensions.Length;
+
+        /// <summary>
+        /// Calculates the magnitude of the vector.
+        /// Magnitude = sqrt(x^2 + y^2 + z^2 + ...)
+        /// </summary>
+        /// <returns>Returns a double precision floating point representation of the magnitude of the vector.</returns>
+        public double GetMagnitude() => Math.Sqrt(Dimensions.Select(x => Math.Pow((double)x, 2)).Sum());
     }
 }
