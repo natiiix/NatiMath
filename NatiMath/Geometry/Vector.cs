@@ -25,6 +25,11 @@ namespace NatiMath.Geometry
         public double Magnitude { get => GetMagnitude(); }
 
         /// <summary>
+        /// Direction vector of the vector.
+        /// </summary>
+        public Vector Direction { get => GetDirectionVector(); }
+
+        /// <summary>
         /// Constructs a Vector object from a set of dimensions in an array.
         /// </summary>
         /// <param name="dimensions">Dimension values.</param>
@@ -155,7 +160,7 @@ namespace NatiMath.Geometry
         /// This is done by scaling the original vector so that its magnitude is equal to 1.
         /// </summary>
         /// <returns>Returns a direction vector with the same direction as the original vector.</returns>
-        public Vector ToDirectionVector()
+        public Vector GetDirectionVector()
         {
             // If all the dimensions of the vector are equal to zero
             // the direction vector cannot be constructed
