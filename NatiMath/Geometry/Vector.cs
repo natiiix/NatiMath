@@ -149,5 +149,26 @@ namespace NatiMath.Geometry
         /// </summary>
         /// <returns>Returns a double precision floating point representation of the magnitude of the vector.</returns>
         public double GetMagnitude() => Math.Sqrt(Dimensions.Select(x => Math.Pow((double)x, 2)).Sum());
+
+        /// <summary>
+        /// Converts the vector to a direction vector.
+        /// This is done by scaling the original vector so that its magnitude is equal to 1.
+        /// </summary>
+        /// <returns>Returns a direction vector with the same direction as the original vector.</returns>
+        public Vector ToDirectionVector()
+        {
+            // If all the dimensions of the vector are equal to zero
+            // the direction vector cannot be constructed
+            if (Dimensions.All(x => x.Numerator == 0))
+            {
+                throw new InvalidOperationException("Cannot convert a vector with all dimensions equal to zero to a direction vector!");
+            }
+
+            // Each dimension has to be scaled by the inverted value of the current vector's magnitude
+            double scale = 1.0 / Magnitude;
+
+            // Calculate the direction vector and return it
+            return new Vector(Dimensions.Select(x => x * scale));
+        }
     }
 }
