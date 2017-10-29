@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NatiMath
+namespace NatiMath.Geometry
 {
     /// <summary>
     /// Class for storing and operating with Euclidean vectors.
