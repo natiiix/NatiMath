@@ -164,11 +164,9 @@ namespace NatiMath.Geometry
                 throw new InvalidOperationException("Cannot convert a vector with all dimensions equal to zero to a direction vector!");
             }
 
-            // Each dimension has to be scaled by the inverted value of the current vector's magnitude
-            double scale = 1.0 / Magnitude;
-
             // Calculate the direction vector and return it
-            return new Vector(Dimensions.Select(x => x * scale));
+            // Direction vector is calculated by scaling the original vector by the inverse value of its magnitude
+            return this / Magnitude;
         }
     }
 }
